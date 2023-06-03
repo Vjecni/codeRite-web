@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+*::before, *::after {
+    box-sizing: border-box;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -14,12 +17,41 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    background: #1a1a1a;
+    position: relative;
+    background: #161616;
     color: #fff;
     display: flex;
     justify-content: center;
     gap: .5em;
-    overflow-y: hidden;
+    overflow: hidden;
+}
+.bubbles {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+
+}
+.bubble {
+    position: absolute;
+    content: '';
+    z-index: -2;
+    filter: blur(180px);
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+}
+.bubble__1 {
+    right: 5%;
+    top: 15%;
+    background: #f5b69779;
+}
+.bubble__2 {
+    left: 5%;
+    bottom: 0%;
+    background: #4c18c5;
 }
 p, a, span {
     font-size: 18px;
@@ -30,18 +62,160 @@ a {
     color: #fff;
 }
 a:hover {
-    color: #fdbb2b;
+    color: #DE5714;
 }
 h1 {
     text-transform: capitalize;
+}
+.paragraph {
+    font-size: 18px;
+    line-height: 30px;
+}
+.heading__xxl {
     font-size: 45px;
 }
-h2 {
+.heading__xl {
     font-size: 35px;
 }
-h3 {
+.heading__l {
     font-size: 25px;
 }
+.code__block {
+    background: #1616167e;
+    backdrop-filter: blur(180px);
+    width: 100%;
+    border-radius: 4px;
+    margin: 10px 0;
+    max-width: 90%;
+    width: 100%;
+}
+.oneline__block__holder {
+    margin: 10PX 0;
+    overflow: hidden;
+    background: #1616167e;
+    backdrop-filter: blur(180px);
+    border-radius: 12px 12px 4px 4px;   
+    max-width: 90%;
+    width: 100%;
+}
+.oneline__block__holder p,
+.oneline__block__holder span {
+    font-family: 'Space Mono', monospace !important;
+}
+.obh__header {
+    background: #161616;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: solid 1px #333;
+}
+.o__b__h__content {
+    padding: 5px 15px;
+}
+.obh__h_bx {
+    cursor: pointer;
+    padding: 5px 15px;
+    text-align: center;
+    width: 50%;
+    transition: .3s ease;
+}
+.obh__h_bx:first-child {
+    border-right: solid 1px #333;
+}
+.obh__h_bx:hover {
+    background: #333;
+}
+.obh_c_bx {
+    width: 100%;
+    padding: 5px 15px;
+}
+.obh_c_bx p {
+    font-size: 17px;
+}
+.obh__content .obh_c_bx:not(.active) {
+    display: none;
+}
+.method__name {
+    color: #cccc02;
+}
+.package__name {
+    color: #146cde;
+}
+.operator {
+    color: #DE5714;
+}
+.line__splitter {
+    position: relative;
+    max-width: 90%;
+    height: 0.5px;
+    background: #ddd;
+}
+.link,
+.url {
+    font-weight: 500;
+    text-decoration: underline;
+    color: #cccc02;
+}
+.link:hover,
+.url:hover {
+    color: #cccc02;
+}
+.link::selection,
+.url::selection {
+    background: #cccc02;
+    color: #000;
+}
+
+
+.hamburger {
+    position: fixed;
+    top: 20px;
+
+    right: 20px;
+    padding: 8px;
+
+
+    cursor: pointer;
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+
+    transform: rotate(-45deg);
+    transition: .3s ease;
+
+    z-index: 10000;
+}
+.hamburger.active {
+    transform: rotate(0);
+}
+.hamburger.active span:first-child,
+.hamburger.active span:last-child {
+    width: 35px;
+}
+.hamburger span {
+    position: relative;
+    display: block;
+    height: 2px;
+    border-radius: 30px;
+    background: #fff;
+    margin-bottom: 5px;
+
+    transition: .3s ease;
+}
+.hamburger span:first-child,
+.hamburger span:last-child {
+    width: 25px;
+}
+.hamburger span:nth-child(2) {
+    width: 35px;
+}
+
+/* ===== End Of Components Styling ===== */
+
+
+
 header {
     height: 100vh;
     display: flex;
@@ -66,39 +240,51 @@ button, .btn {
 
 .sidebar__container {
     overflow-y: auto;
-    background: #161616;
-    border-right: solid 1px #333;
-    padding: 40px 10px;
+    background: #16161698;
+    backdrop-filter: blur(180px);
     height: 100vh;
     max-width: 250px;
     width: 100%;
 }
+.sidebar__container.active {
+    transform: translate(0);
+}
 .sidebar__contnet {
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-direction: column;
     gap: 1em;
+
+    padding: 1em;
+
+    width: 100%;
+    height: 100%;
 }
+
 .docs__container {
+    width: 100%;
     overflow: hidden;
     margin-top: 0px;
 }
 .interactive__title {
     color: #fff;
     display: flex;
+
     cursor: pointer;
     align-items: center;
+
     justify-content: space-between;
-    gap: 1em;
-    padding: 5px 5px;
-    border-radius: 6px;
-    background: #1d1d1d;
-    max-width: 180px;
+
+    padding: 8px 15px;
+    border-radius: 0px;
+
     width: 100%;
 }
 .interactive__title i {
     transition: .3s ease;
     color: #fff;
-    background: #2b2b2b;
+    background: #DE5714;
     border-radius: 2px;
     padding: 5px;
     font-size: 18px;
@@ -131,10 +317,10 @@ button, .btn {
 .docs__content__holder a::before {
     position: absolute;
     content: '';
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    height: 2px;
     left: -20px;
-    border-radius: 50%;
+    border-radius: 0px;
     top: 50%;
     transform: translate(0%, -50%);
     background: #fff;
@@ -142,9 +328,14 @@ button, .btn {
 
 
 .main__container {
-    overflow-y: auto;
+    position: relative;
+    overflow: auto;
     padding: 20px;
+    height: 100vh;
     width: 100%;
+}
+.main__content {
+
 }
 .mc__title {
     margin-bottom: 30px;
@@ -155,8 +346,24 @@ button, .btn {
 
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
+.hamburger {
+        display: flex;
+}
+.sidebar__container {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    background: #16161665;
+    backdrop-filter: blur(12px);
+    transition: .3s ease;
 
+    transform: translateX(-100%);
+}
+.code__block,
+.oneline__block__holder {
+    max-width: 100%;
+}
 }
 @media screen and (max-width: 768px) {
     
@@ -170,3 +377,10 @@ button, .btn {
 @media screen and (max-width: 350px) {
     
 }
+
+
+
+
+
+
+

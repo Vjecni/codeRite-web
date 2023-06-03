@@ -82,7 +82,6 @@ h1 {
 }
 .code__block {
     background: #1616167e;
-    backdrop-filter: blur(0);
     width: 100%;
     border-radius: 4px;
     margin: 10px 0;
@@ -93,7 +92,6 @@ h1 {
     margin: 10PX 0;
     overflow: hidden;
     background: #1616167e;
-    backdrop-filter: blur();
     border-radius: 12px 12px 4px 4px;   
     max-width: 90%;
     width: 100%;
@@ -241,7 +239,7 @@ button, .btn {
 .sidebar__container {
     overflow-y: auto;
     background: #16161698;
-    backdrop-filter: blur(0);
+    backdrop-filter: blur(180px);
     height: 100vh;
     max-width: 250px;
     width: 100%;
